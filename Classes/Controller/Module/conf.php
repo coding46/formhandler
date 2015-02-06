@@ -18,4 +18,3 @@ $MCONF['script'] = 'index.php';
 
 $MLANG['default']['tabs_images']['tab'] = 'moduleicon.gif';
 $MLANG['default']['ll_ref'] = 'LLL:EXT:formhandler/Resources/Language/locallang_mod.xml';
-?>

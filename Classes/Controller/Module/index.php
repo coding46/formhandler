@@ -34,15 +34,8 @@
 // DEFAULT initialization of a module [BEGIN]
 unset($MCONF);
 require_once('conf.php');
-require_once($GLOBALS['BACK_PATH'] . 'init.php');
 
-$GLOBALS['LANG']->includeLLFile('EXT:formhandler/Resources/Language/locallang.xml');
-
-$GLOBALS['BE_USER']->modAccess($MCONF, 1);	// This checks permissions and exits if the users has no permission for entry.
-// DEFAULT initialization of a module [END]
-
-require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('formhandler') . 'Classes/Utils/\Tx\Formhandler\Utils\Globals.php');
-require_once (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('formhandler') . 'Classes/Component/\Tx\Formhandler\Component\Manager.php');
+#$GLOBALS['LANG']->includeLLFile('EXT:formhandler/Resources/Language/locallang.xml');
 
 /**
  * Module 'Formhandler' for the 'formhandler' extension.
@@ -51,7 +44,8 @@ require_once (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('formh
  * @package	Tx_Formhandler
  * @subpackage	Controller
  */
-class \Tx\Formhandler\module1 extends \TYPO3\CMS\Backend\Module\BaseScriptClass {
+class Module extends \TYPO3\CMS\Backend\Module\BaseScriptClass {
+
 	var $pageinfo;
 
 	/**
@@ -211,15 +205,6 @@ class \Tx\Formhandler\module1 extends \TYPO3\CMS\Backend\Module\BaseScriptClass 
 	}
 }
 
-
-
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/formhandler/Classes/Controller/Module/index.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/formhandler/Classes/Controller/Module/index.php']);
-}
-
-
-
-
 // Make instance:
 $SOBE = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\Tx\Formhandler\module1');
 $SOBE->init();
@@ -229,5 +214,3 @@ foreach ($SOBE->include_once as $INC_FILE)	include_once($INC_FILE);
 
 $SOBE->main();
 $SOBE->printContent();
-
-?>

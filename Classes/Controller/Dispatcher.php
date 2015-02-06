@@ -50,8 +50,8 @@ class Dispatcher extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		$this->pi_USER_INT_obj = 1;
 		$this->globals = \Tx\Formhandler\Utils\Globals::getInstance();
 		$this->utilityFuncs = \Tx\Formhandler\Utils\UtilityFuncs::getInstance();
-		try {
 
+		try {
 			//init flexform
 			$this->pi_initPIflexForm();
 
@@ -82,7 +82,7 @@ class Dispatcher extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 			 * 1. Default controller
 			 * 2. TypoScript
 			 */
-			$controller = '\Tx\Formhandler\Controller_Form';
+			$controller = 'Tx\Formhandler\Controller\Form';
 			if ($setup['controller']) {
 				$controller = $setup['controller'];
 			}

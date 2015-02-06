@@ -87,7 +87,7 @@ class UtilityFuncs {
 	 */
 	public function prepareClassName($className) {
 		if (strstr($className, '\\') === FALSE && substr($className, 0, 3) !== 'Tx_') {
-			$className = '\Tx\Formhandler\' . $className;
+			$className = 'Tx_Formhandler_' . $className;
 		}
 		return $className;
 	}
