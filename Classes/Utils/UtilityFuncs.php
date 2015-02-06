@@ -624,14 +624,14 @@ class UtilityFuncs {
 	public function throwException($key) {
 		$message = $this->getExceptionMessage($key);
 		if (strlen($message) == 0) {
-			throw new Exception($key);
+			throw new \Exception($key);
 		} else {
 			if (func_num_args() > 1) {
 				$args = func_get_args();
 				array_shift($args);
 				$message = vsprintf($message, $args);
 			}
-			throw new Exception($message);
+			throw new \Exception($message);
 		}
 	}
 

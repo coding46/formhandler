@@ -174,7 +174,7 @@ class Manager {
 		$className = $componentName;
 
 		if (!class_exists($className, TRUE)) {
-			throw new Exception('No valid implementation class for component "' . $componentName . '" found while building the component object (Class "' . $className . '" does not exist).');
+			throw new \Exception('No valid implementation class for component "' . $componentName . '" found while building the component object (Class "' . $className . '" does not exist).');
 		}
 
 		$constructorArguments = array();
@@ -189,7 +189,7 @@ class Manager {
 
 		if (!is_object($componentObject)) {
 			$errorMessage = error_get_last();
-			throw new Exception('A parse error ocurred while trying to build a new object of type ' . $className . ' (' . $errorMessage['message'] . '). The evaluated PHP code was: ' . $instruction);
+			throw new \Exception('A parse error ocurred while trying to build a new object of type ' . $className . ' (' . $errorMessage['message'] . '). The evaluated PHP code was: ' . $instruction);
 		}
 
 		return $componentObject;
@@ -223,8 +223,8 @@ class Manager {
 						} else {
 							$this->debugMessages[] = 'Tried everything to autowire parameter $' . $parameter->getName() . ' in ' . $className . '::' . $constructor->getName() . '() but I saw no way.';
 						}
-					} catch (ReflectionException $exception) {
-						throw new Exception('While trying to autowire the parameter $' . $parameter->getName() . ' of the method ' . $className . '::' . $constructor->getName() .'() a ReflectionException was thrown. Please verify the definition of your constructor method in ' . $constructor->getFileName() . ' line ' . $constructor->getStartLine() .'. Original message: ' . $exception->getMessage());
+					} catch (\ReflectionException $exception) {
+						throw new \Exception('While trying to autowire the parameter $' . $parameter->getName() . ' of the method ' . $className . '::' . $constructor->getName() .'() a ReflectionException was thrown. Please verify the definition of your constructor method in ' . $constructor->getFileName() . ' line ' . $constructor->getStartLine() .'. Original message: ' . $exception->getMessage());
 					}
 				} else {
 					$this->debugMessages[] = 'Did not try to autowire parameter $' . $parameter->getName() . ' in ' . $className . '::' . $constructor->getName() . '() because it was already set.';
@@ -291,7 +291,7 @@ class Manager {
 			return array();
 		}
 		if ($recursionLevel > 100) {
-			throw new Exception('Recursion too deep.');
+			throw new \Exception('Recursion too deep.');
 		}
 
 		try {
@@ -311,8 +311,8 @@ class Manager {
 				}
 				$classesDirectoryIterator->next();
 			}
-		} catch(Exception $exception) {
-			throw new Exception($exception->getMessage());
+		} catch(\Exception $exception) {
+			throw new \Exception($exception->getMessage());
 		}
 		return $classFiles;
 	}

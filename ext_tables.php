@@ -24,7 +24,24 @@ if (TYPO3_MODE === 'BE') {
 	// Add flexform DataStructure
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($_EXTKEY . '_pi1', $file);
 
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addModule('web', 'txformhandlermoduleM1', '', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Controller/Module/');
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addModule(
+		'web',
+		'txformhandlermoduleM1',
+		'',
+		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'mod1/',
+		array(
+			'script' => 'index.php',
+			'access' => 'user,group',
+			'name' => 'web_txformhandlermoduleM1',
+			'labels' => array(
+				'tabs_images' => array(
+					'tab' => '../Resources/Public/Icons/moduleicon.gif',
+				),
+				'll_ref' => 'LLL:EXT:formhandler/Resources/Language/locallang_mod.xml',
+			),
+		)
+	);
+
 	$TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['tx_formhandler_wizicon'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Resources/PHP/class.tx_formhandler_wizicon.php';
 }
 
@@ -51,5 +68,3 @@ $TCA['pages']['columns']['module']['config']['items'][] = array(
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'ext_icon.gif'
 );
 \TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon('pages', 'contains-formlogs', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Images/pagetreeicon.png');
-
-?>

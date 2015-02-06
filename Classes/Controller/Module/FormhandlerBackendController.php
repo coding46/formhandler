@@ -1,4 +1,6 @@
 <?php
+namespace Tx\Formhandler\Controller\Module;
+
 /**
  * index.php for the backend module of ext: "formhandler"
  *
@@ -32,8 +34,8 @@
 
 
 // DEFAULT initialization of a module [BEGIN]
-unset($MCONF);
-require_once('conf.php');
+#unset($MCONF);
+#require_once('conf.php');
 
 #$GLOBALS['LANG']->includeLLFile('EXT:formhandler/Resources/Language/locallang.xml');
 
@@ -44,7 +46,7 @@ require_once('conf.php');
  * @package	Tx_Formhandler
  * @subpackage	Controller
  */
-class Module extends \TYPO3\CMS\Backend\Module\BaseScriptClass {
+class FormhandlerBackendController extends \TYPO3\CMS\Backend\Module\BaseScriptClass {
 
 	var $pageinfo;
 
@@ -204,13 +206,3 @@ class Module extends \TYPO3\CMS\Backend\Module\BaseScriptClass {
 		}
 	}
 }
-
-// Make instance:
-$SOBE = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('\Tx\Formhandler\module1');
-$SOBE->init();
-
-// Include files?
-foreach ($SOBE->include_once as $INC_FILE)	include_once($INC_FILE);
-
-$SOBE->main();
-$SOBE->printContent();

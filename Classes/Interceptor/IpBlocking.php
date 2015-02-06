@@ -142,7 +142,7 @@ class IpBlocking extends AbstractInterceptor {
 			if ($this->settings['redirectPage']) {
 				$this->utilityFuncs->doRedirectBasedOnSettings($this->settings, $this->gp);
 			} else {
-				throw new Exception($message);
+				throw new \Exception($message);
 			}
 		}
 	}

@@ -188,7 +188,7 @@ class HtmlMail extends AbstractMailer implements MailerInterface {
 	}
 
 	public function embed($image) {
-		throw new Exception('This mailer doesn\'t support mebedding images. Please use Mailer_TYPO3Mailer.');
+		throw new \Exception('This mailer doesn\'t support mebedding images. Please use Mailer_TYPO3Mailer.');
 	}
 
 }
