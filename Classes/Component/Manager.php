@@ -181,7 +181,7 @@ class Manager {
 		foreach ($overridingConstructorArguments as $index => $value) {
 			$constructorArguments[$index] = $value;
 		}
-		$class = new ReflectionClass($className);
+		$class = new \ReflectionClass($className);
 		$constructorArguments = $this->autoWireConstructorArguments($constructorArguments, $class);
 		$constructorArguments = $this->prepareConstructorArguments($constructorArguments);
 
@@ -205,7 +205,7 @@ class Manager {
 	 * @author Robert Lemke <robert@typo3.org>
 	 * @author adapted for TYPO3v4 by Jochen Rau <jochen.rau@typoplanet.de>
 	 */
-	protected function autoWireConstructorArguments(array $constructorArguments, ReflectionClass $class) {
+	protected function autoWireConstructorArguments(array $constructorArguments, \ReflectionClass $class) {
 		$className = $class->getName();
 		$constructor = $class->getConstructor();
 		if ($constructor !== NULL) {
