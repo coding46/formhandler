@@ -36,7 +36,7 @@ class tx_formhandler_wizicon {
 	 * @return array Modified input array, having the item for formhandler
 	 * pi1 added.
 	 */
-	function proc($wizardItems)	{
+	function proc($wizardItems) {
 		$LL = $this->includeLocalLang();
 
 		$wizardItems['plugins_tx_formhandler_pi1'] = array(
@@ -54,7 +54,7 @@ class tx_formhandler_wizicon {
 	 *
 	 * @return array The LOCAL_LANG array
 	 */
-	function includeLocalLang()	{
+	function includeLocalLang() {
 		$llFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('formhandler') . 'Resources/Language/locallang_db.xml';
 		$parser = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Localization\Parser\LocallangXmlParser');
 		$LOCAL_LANG = $parser->getParsedData($llFile, $GLOBALS['LANG']->lang, 'utf-8');
@@ -62,6 +62,6 @@ class tx_formhandler_wizicon {
 	}
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/formhandler/Resources/PHP/class.tx_formhandler_wizicon.php'])	{
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/formhandler/Resources/PHP/class.tx_formhandler_wizicon.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/formhandler/Resources/PHP/class.tx_formhandler_wizicon.php']);
 }

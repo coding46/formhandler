@@ -121,22 +121,22 @@ class UtilityFuncs {
 	 */
 	public function getSubpart($content, $marker) {
 		$start = strpos($content, $marker);
-		if ($start === FALSE)	{
+		if ($start === FALSE) {
 			return '';
 		}
 		$start += strlen($marker);
 		$stop = strpos($content, $marker, $start);
 		$content = substr($content, $start, ($stop - $start));
 		$matches = array();
-		if (preg_match('/^([^\<]*\-\-\>)(.*)(\<\!\-\-[^\>]*)$/s', $content, $matches) === 1)	{
+		if (preg_match('/^([^\<]*\-\-\>)(.*)(\<\!\-\-[^\>]*)$/s', $content, $matches) === 1) {
 			return $matches[2];
 		}
 		$matches = array();
-		if (preg_match('/(.*)(\<\!\-\-[^\>]*)$/s', $content, $matches) === 1)	{
+		if (preg_match('/(.*)(\<\!\-\-[^\>]*)$/s', $content, $matches) === 1) {
 			return $matches[1];
 		}
 		$matches = array();
-		if (preg_match('/^([^\<]*\-\-\>)(.*)$/s', $content, $matches) === 1)	{
+		if (preg_match('/^([^\<]*\-\-\>)(.*)$/s', $content, $matches) === 1) {
 			return $matches[2];
 		}
 		return $content;
@@ -388,7 +388,7 @@ class UtilityFuncs {
 		} else {
 			$sheetArray = '';
 		}
-		if (is_array($sheetArray))	{
+		if (is_array($sheetArray)) {
 			return $this->pi_getFFvalueFromSheetArray($sheetArray, \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode('/', $fieldName), $value);
 		}
 	}

@@ -203,7 +203,7 @@ class Filtreatment {
 				'-->'			=> '--&gt;'
 		);
 
-		foreach ($bad as $key => $val)	{
+		foreach ($bad as $key => $val) {
 			$str = preg_replace("#".$key."#i", $val, $str);
 		}
 

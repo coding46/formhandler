@@ -52,7 +52,7 @@ class FormhandlerBackendController extends \TYPO3\CMS\Backend\Module\BaseScriptC
 
 	/**
 	 * Array holding the TypoScript set in userTS or pageTS.
-	 * 
+	 *
 	 * @access private
 	 * @var array
 	 */
@@ -62,7 +62,7 @@ class FormhandlerBackendController extends \TYPO3\CMS\Backend\Module\BaseScriptC
 	 * Initializes the Module
 	 * @return	void
 	 */
-	function init()	{
+	function init() {
 		$id = intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('id'));
 		$tsconfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getModTSconfig($id, '\Tx\Formhandler\mod1');
 		$this->settings = $tsconfig['properties']['config.'];
@@ -74,7 +74,7 @@ class FormhandlerBackendController extends \TYPO3\CMS\Backend\Module\BaseScriptC
 	 *
 	 * @return	void
 	 */
-	function menuConfig()	{
+	function menuConfig() {
 		$this->MOD_MENU = array (
 			'function' => array (
 				'1' => $GLOBALS['LANG']->getLL('function1')
@@ -92,14 +92,14 @@ class FormhandlerBackendController extends \TYPO3\CMS\Backend\Module\BaseScriptC
 	 *
 	 * @return	[type]		...
 	 */
-	function main()	{
+	function main() {
 
 		// Access check!
 		// The page will show only if there is a valid page and if this page may be viewed by the user
 		$this->pageinfo = \TYPO3\CMS\Backend\Utility\BackendUtility::readPageAccess($this->id, $this->perms_clause);
 		$access = is_array($this->pageinfo) ? 1 : 0;
 
-		if (($this->id && $access) || ($GLOBALS['BE_USER']->user['admin'] && !$this->id))	{
+		if (($this->id && $access) || ($GLOBALS['BE_USER']->user['admin'] && !$this->id)) {
 
 			// Draw the header.
 			$this->doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('mediumDoc');
@@ -122,7 +122,7 @@ class FormhandlerBackendController extends \TYPO3\CMS\Backend\Module\BaseScriptC
 			$this->doc->JScode = '
 				<script language="javascript" type="text/javascript">
 					script_ended = 0;
-					function jumpToUrl(URL)	{
+					function jumpToUrl(URL) {
 						document.location = URL;
 					}
 				</script>
@@ -144,7 +144,7 @@ class FormhandlerBackendController extends \TYPO3\CMS\Backend\Module\BaseScriptC
 			$this->content .= $this->moduleContent();
 
 			// ShortCut
-			if ($GLOBALS['BE_USER']->mayMakeShortcut())	{
+			if ($GLOBALS['BE_USER']->mayMakeShortcut()) {
 				$this->content .= $this->doc->spacer(20) . $this->doc->section('', $this->doc->makeShortcutIcon('id', implode(',', array_keys($this->MOD_MENU)), $this->MCONF['name']));
 			}
 
@@ -168,7 +168,7 @@ class FormhandlerBackendController extends \TYPO3\CMS\Backend\Module\BaseScriptC
 	 *
 	 * @return	void
 	 */
-	function printContent()	{
+	function printContent() {
 		$this->content.=$this->doc->endPage();
 		echo $this->content;
 	}
@@ -178,7 +178,7 @@ class FormhandlerBackendController extends \TYPO3\CMS\Backend\Module\BaseScriptC
 	 *
 	 * @return	void
 	 */
-	function moduleContent()	{
+	function moduleContent() {
 
 		switch ((string)$this->MOD_SETTINGS['function']) {
 			case 1:
