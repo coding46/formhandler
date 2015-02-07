@@ -94,7 +94,7 @@ class DynaFlex {
 
 		# no config available
 		if (!is_array($ts['plugin.']['Tx_Formhandler.']['settings.']['predef.']) || sizeof($ts['plugin.']['Tx_Formhandler.']['settings.']['predef.']) == 0) {
-			$optionList[] = array(0 => $LANG->sL('LLL:EXT:formhandler/Resources/Language/locallang_db.xml:be_missing_config'), 1 => '');
+			$optionList[] = array(0 => $LANG->sL('LLL:EXT:formhandler/Resources/Private/Language/locallang_db.xml:be_missing_config'), 1 => '');
 			return $config['items'] = array_merge($config['items'],$optionList);
 		}
 
@@ -116,7 +116,7 @@ class DynaFlex {
 		}
 
 		$optionList = array();
-		$optionList[] = array(0 => $LANG->sL('LLL:EXT:formhandler/Resources/Language/locallang_db.xml:be_please_select'), 1 => '');
+		$optionList[] = array(0 => $LANG->sL('LLL:EXT:formhandler/Resources/Private/Language/locallang_db.xml:be_please_select'), 1 => '');
 		foreach($predef as $k => $v) {
 			$optionList[] = array(0 => $v, 1 => $k);
 		}

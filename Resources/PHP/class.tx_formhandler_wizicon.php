@@ -55,7 +55,7 @@ class tx_formhandler_wizicon {
 	 * @return array The LOCAL_LANG array
 	 */
 	function includeLocalLang() {
-		$llFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('formhandler') . 'Resources/Language/locallang_db.xml';
+		$llFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('formhandler') . 'Resources/Private/Language/locallang_db.xml';
 		$parser = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\Localization\Parser\LocallangXmlParser');
 		$LOCAL_LANG = $parser->getParsedData($llFile, $GLOBALS['LANG']->lang, 'utf-8');
 		return $LOCAL_LANG;

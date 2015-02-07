@@ -4,7 +4,7 @@
 		<description>Language labels for formhandler BE forms</description>
 		<type>database</type>
 		<csh_table></csh_table>
-		<fileId>formhandler/Resources/Language/locallang_tca.xml</fileId>
+		<fileId>formhandler/Resources/Private/Language/locallang_tca.xml</fileId>
 		<labelContext type="array">
 			<label index="formhandler.pi_flexform.sheet_general"></label>
 			<label index="formhandler.pi_flexform.sheet_emailAdminSettings"></label>
