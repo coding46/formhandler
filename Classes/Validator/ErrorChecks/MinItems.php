@@ -58,4 +58,3 @@ class MinItems extends AbstractErrorCheck {
 	}
 
 }
-?>

@@ -38,4 +38,3 @@ class Required extends AbstractErrorCheck {
 	}
 
 }
-?>

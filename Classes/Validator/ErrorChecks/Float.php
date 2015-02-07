@@ -38,4 +38,3 @@ class Float extends AbstractErrorCheck {
 	}
 
 }
-?>

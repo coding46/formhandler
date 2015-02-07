@@ -65,4 +65,3 @@ class Date extends AbstractErrorCheck {
 	}
 
 }
-?>

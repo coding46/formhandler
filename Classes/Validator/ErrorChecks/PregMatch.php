@@ -43,4 +43,3 @@ class PregMatch extends AbstractErrorCheck {
 	}
 
 }
-?>

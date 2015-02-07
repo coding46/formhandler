@@ -45,4 +45,3 @@ class NotDefaultValue extends AbstractErrorCheck {
 	}
 
 }
-?>

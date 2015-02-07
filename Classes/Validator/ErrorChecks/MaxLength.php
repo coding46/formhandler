@@ -44,4 +44,3 @@ class MaxLength extends AbstractErrorCheck {
 	}
 
 }
-?>

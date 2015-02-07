@@ -57,4 +57,3 @@ class FileMinSize extends AbstractErrorCheck {
 	}
 
 }
-?>

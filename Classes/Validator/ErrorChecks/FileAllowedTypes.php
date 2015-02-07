@@ -55,4 +55,3 @@ class FileAllowedTypes extends AbstractErrorCheck {
 	}
 
 }
-?>

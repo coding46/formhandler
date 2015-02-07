@@ -58,4 +58,3 @@ class ContainsOnly extends AbstractErrorCheck {
 	}
 
 }
-?>

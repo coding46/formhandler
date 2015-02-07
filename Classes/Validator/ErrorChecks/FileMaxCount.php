@@ -91,4 +91,3 @@ class FileMaxCount extends AbstractErrorCheck {
 	}
 
 }
-?>

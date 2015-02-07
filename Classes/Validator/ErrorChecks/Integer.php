@@ -37,4 +37,3 @@ class Integer extends AbstractErrorCheck {
 	}
 
 }
-?>

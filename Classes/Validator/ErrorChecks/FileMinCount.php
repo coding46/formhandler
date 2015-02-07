@@ -58,4 +58,3 @@ class FileMinCount extends AbstractErrorCheck {
 	}
 
 }
-?>

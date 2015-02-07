@@ -43,4 +43,3 @@ class \Tx\Formhandler\ErrorCheck_IsYoungerThan extends \Tx\Formhandler\ErrorChec
 	}
 
 }
-?>

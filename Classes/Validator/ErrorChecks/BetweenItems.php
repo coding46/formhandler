@@ -54,4 +54,3 @@ class BetweenItems extends AbstractErrorCheck {
 	}
 
 }
-?>

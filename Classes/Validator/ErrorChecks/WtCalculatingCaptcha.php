@@ -49,4 +49,3 @@ class WtCalculatingCaptcha extends AbstractErrorCheck {
 	}
 
 }
-?>

@@ -44,4 +44,3 @@ class NotEqualsField extends AbstractErrorCheck {
 	}
 
 }
-?>

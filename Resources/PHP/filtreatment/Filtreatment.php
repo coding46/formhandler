@@ -211,6 +211,4 @@ class Filtreatment {
 
 	}
 
-} // class
-
-?>
+}

@@ -140,6 +140,5 @@ class DynaFlex {
 		$TSObj->generateConfig();
 		return $TSObj->setup;
 	}
-}
 
-?>
+}

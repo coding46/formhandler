@@ -44,4 +44,3 @@ class BetweenLength extends AbstractErrorCheck {
 	}
 
 }
-?>

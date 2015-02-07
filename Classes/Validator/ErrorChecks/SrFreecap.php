@@ -38,4 +38,3 @@ class SrFreecap extends AbstractErrorCheck {
 	}
 
 }
-?>

@@ -47,4 +47,3 @@ class Equals extends AbstractErrorCheck {
 	}
 
 }
-?>

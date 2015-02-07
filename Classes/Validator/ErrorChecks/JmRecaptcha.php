@@ -39,4 +39,3 @@ class JmRecaptcha extends AbstractErrorCheck {
 	}
 
 }
-?>

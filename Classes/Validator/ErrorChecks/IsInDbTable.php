@@ -55,4 +55,3 @@ class IsInDbTable extends AbstractErrorCheck {
 	}
 
 }
-?>

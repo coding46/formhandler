@@ -81,4 +81,3 @@ abstract class AbstractErrorCheck extends \Tx\Formhandler\Component\AbstractComp
 	}
 
 }
-?>

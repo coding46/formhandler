@@ -57,4 +57,3 @@ class ContainsOne extends AbstractErrorCheck {
 	}
 
 }
-?>

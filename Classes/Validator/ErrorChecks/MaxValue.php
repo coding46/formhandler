@@ -49,4 +49,3 @@ class MaxValue extends AbstractErrorCheck {
 	}
 
 }
-?>

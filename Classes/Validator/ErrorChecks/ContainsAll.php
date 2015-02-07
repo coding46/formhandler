@@ -54,4 +54,3 @@ class ContainsAll extends AbstractErrorCheck {
 	}
 
 }
-?>

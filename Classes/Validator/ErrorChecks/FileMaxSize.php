@@ -58,4 +58,3 @@ class FileMaxSize extends AbstractErrorCheck {
 	}
 
 }
-?>

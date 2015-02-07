@@ -50,4 +50,3 @@ class EmailExists extends AbstractErrorCheck {
 	}
 
 }
-?>

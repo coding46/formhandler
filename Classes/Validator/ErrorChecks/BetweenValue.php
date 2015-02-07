@@ -48,5 +48,5 @@ class BetweenValue extends AbstractErrorCheck {
 
 		return $checkFailed;
 	}
+
 }
-?>

@@ -157,5 +157,5 @@ class Csv {
 		}
 		return $charset;
 	}
+
 }
-?>

@@ -48,4 +48,3 @@ class MinValue extends AbstractErrorCheck {
 	}
 
 }
-?>

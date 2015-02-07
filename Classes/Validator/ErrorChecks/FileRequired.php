@@ -44,4 +44,3 @@ class FileRequired extends AbstractErrorCheck {
 	}
 
 }
-?>

@@ -44,4 +44,3 @@ class EqualsField extends AbstractErrorCheck {
 	}
 
 }
-?>

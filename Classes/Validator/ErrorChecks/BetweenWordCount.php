@@ -44,4 +44,3 @@ class BetweenWordCount extends AbstractErrorCheck {
 	}
 
 }
-?>

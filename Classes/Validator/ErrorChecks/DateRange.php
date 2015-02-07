@@ -84,4 +84,3 @@ class DateRange extends \Tx\Formhandler\ErrorCheck_Date {
 	}
 
 }
-?>

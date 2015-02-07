@@ -70,6 +70,5 @@ class Stdwrap implements \TYPO3\CMS\Frontend\ContentObject\ContentObjectStdWrapH
 		}
 		return $content;
 	}
-}
 
-?>
+}
