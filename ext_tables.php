@@ -25,8 +25,8 @@ if (TYPO3_MODE === 'BE') {
 				'tabs_images' => array(
 					'tab' => '../Resources/Public/Icons/module-formhandler.png',
 				),
-				'll_ref' => 'LLL:EXT:formhandler/Resources/Language/locallang_mod.xml',
-			),
+				'll_ref' => 'LLL:EXT:formhandler/Resources/Private/Language/locallang_mod.xml',
+			)
 		)
 	);
 
