@@ -31,7 +31,7 @@ $TCA['tx_formhandler_log'] = array (
 			'label' => 'LLL:EXT:formhandler/Resources/Language/locallang_db.xml:tx_formhandler_log.params',
 			'config' => array (
 				'type' => 'user',
-				'userFunc' => 'tx_formhandler_tcafuncs->user_getParams'
+				'userFunc' => 'Tx\Formhandler\UserFunction\TcaFuncs->user_getParams',
 			)
 		),
 		'is_spam' => array (
