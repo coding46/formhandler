@@ -6,7 +6,7 @@ return array(
 		'default_sortby' => 'ORDER BY crdate DESC',
 		'crdate' => 'crdate',
 		'tstamp' => 'tstamp',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_formhandler_log.gif',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('formhandler') . '/Resources/Public/Icons/tx_formhandler_log.gif',
 		'adminOnly' => 1
 	),
 	'interface' => array (
