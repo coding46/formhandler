@@ -11,22 +11,18 @@ if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
 if (TYPO3_MODE === 'BE') {
 
-	// Backend module
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addModule(
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+		'Tx.' . $_EXTKEY,
 		'web',
-		'txformhandlermoduleM1',
+		'formhandler',
 		'',
-		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'mod1/',
 		array(
-			'script' => '_DISPATCH',
-			'access' => 'user,group',
-			'name' => 'web_txformhandlermoduleM1',
-			'labels' => array(
-				'tabs_images' => array(
-					'tab' => '../Resources/Public/Icons/module-formhandler.png',
-				),
-				'll_ref' => 'LLL:EXT:formhandler/Resources/Private/Language/locallang_mod.xml',
-			)
+			'Log' => 'index, show, clearLog, export'
+		),
+		array(
+			'access' => 'admin',
+			'icon' => 'EXT:formhandler/Resources/Public/Icons/module-formhandler.png',
+			'labels' => 'LLL:EXT:formhandler/Resources/Private/Language/locallang_mod.xml'
 		)
 	);
 

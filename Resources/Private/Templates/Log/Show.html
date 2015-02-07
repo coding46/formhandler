@@ -1,0 +1,62 @@
+<f:layout name="Default" />
+
+<f:section name="iconButtons">
+
+</f:section>
+
+<f:section name="headline">
+	<h1>Log</h1>
+</f:section>
+
+<f:section name="content">
+	<div id="formhandler">
+		<div class="ui-helper-clearfix">
+			<div class="detailLabel">
+				<h4><f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:crdate" /></h4>
+			</div>
+			<div class="detailValue"><f:format.date>{log.crdate}</f:format.date></div>
+		</div>
+		<div class="ui-helper-clearfix">
+			<div class="detailLabel">
+				<h4><f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:ip_address" /></h4>
+			</div>
+			<div class="detailValue">{log.ip}</div>
+		</div>
+		<f:if condition="{params}">
+			<div class="ui-helper-clearfix">
+				<div class="detailLabel ui-helper-clearfix">
+					<h4><f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:params" /></h4>
+				</div>
+				<div class="params_table">
+					<table>
+						<f:for each="{params}" key="key" as="value">
+							<tr>
+								<td style="font-weight:bold">{key}</td>
+								<td>{value}</td>
+							</tr>
+						</f:for>
+					</table>
+				</div>
+			</div>
+		</f:if>
+
+		<hr />
+
+		<div class="ui-helper-clearfix">
+			<div class="detailLabel">
+				<h4><f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:export_as" /></h4>
+			</div>
+			<div class="detailValue">
+				<f:link.action action="export" arguments="{log: log, format: pdf}">
+					<f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:pdf" />
+				</f:link.action> /
+				<f:link.action action="export" arguments="{log: log, format: csv}">
+					<f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:csv" />
+				</f:link.action>
+			</div>
+		</div>
+	</div>
+
+	<p><f:link.action action="index"><f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:back" /></f:link.action></p>
+
+</f:section>

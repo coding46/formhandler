@@ -1,0 +1,48 @@
+{namespace bu = TYPO3\CMS\Beuser\ViewHelpers}
+
+<f:layout name="Default" />
+
+<f:section name="iconButtons">
+
+</f:section>
+
+<f:section name="headline">
+	<h1>Clear Log</h1>
+</f:section>
+
+<f:section name="content">
+
+	###CLEAR_LOGS###
+	<form action="###URL###" method="post">
+		<input type="hidden" name="id" value="###UID###" />
+		<input type="hidden" name="formhandler[doDelete]" value="1" />
+		<p>###LLL:clear-logs-message###</p>
+		<br />
+		<input type="submit" value="###LLL:clear###" />
+	</form>
+	###CLEAR_LOGS###
+
+	###NO_LOGS###
+	<p>###LLL:clear-logs-message###</p>
+	###NO_LOGS###
+
+
+
+	$code = $this->utilityFuncs->getSubpart($this->templateCode, '###CLEAR_LOGS###');
+	$markers = array();
+	$markers['###URL###'] = $_SERVER['PHP_SELF'];
+	$markers['###UID###'] = $this->id;
+
+	$markers['###TABLES###'] = '';
+	if($rowCount > 0) {
+		$markers['###LLL:clear-logs-message###'] = sprintf($GLOBALS['LANG']->getLL('clear-logs-message'), intval($rowCount));
+		$markers['###LLL:clear###'] = $GLOBALS['LANG']->getLL('clear');
+	} else {
+		$code = $this->utilityFuncs->getSubpart($this->templateCode, '###NO_LOGS###');
+		$markers['###LLL:clear-logs-message###'] = $GLOBALS['LANG']->getLL('no-logs-message');
+	}
+
+	return $this->utilityFuncs->substituteMarkerArray($code, $markers);
+
+
+</f:section>

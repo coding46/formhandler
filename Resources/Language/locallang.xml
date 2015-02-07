@@ -80,8 +80,6 @@
 			<label index="function3">Function #3</label>
 			<label index="noLogTable">Required table 'tx_formhandler_log' not found. Please add the default logger to your Formhandler TypoScript setup.</label>
 			<label index="select_export_fields">Please select the fields to export:</label>
-			<label index="select_all">Select all</label>
-			<label index="deselect_all">Deselect all</label>
 			<label index="export">Export</label>
 			<label index="export_all">Export all</label>
 			<label index="export_as">Export as</label>
@@ -153,8 +151,6 @@
 			<label index="welcome">Willkommen zu der Log-Übersicht von Formhandler!</label>
 			<label index="mathguard_question"> Sicherheitsabfrage. Bitte lösen Sie folgende Rechnung:</label>
 			<label index="select_export_fields">Bitte wählen Sie die zu exportierenden Felder:</label>
-			<label index="select_all">Alle auswählen</label>
-			<label index="deselect_all">Auswahl aufheben</label>
 			<label index="export">Exportieren</label>
 			<label index="export_all">Alle exportieren</label>
 			<label index="export_as">Exportieren als</label>
@@ -221,8 +217,6 @@
 			<label index="function3">Function #3</label>
 			<label index="noLogTable">La table 'tx_formhandler_log' est requise. Veuillez ajouter le 'loger' par défaut au setup TypoScript Formhandler.</label>
 			<label index="select_export_fields">Sélectionner les champs à exporter:</label>
-			<label index="select_all">Tout sélectionner</label>
-			<label index="deselect_all">Tout déselectionner</label>
 			<label index="export">Exporter</label>
 			<label index="export_as">Exporter comme</label>
 			<label index="ip_address">IP adresse</label>

@@ -1,0 +1,78 @@
+{namespace bu = TYPO3\CMS\Beuser\ViewHelpers}
+
+<f:layout name="Default" />
+
+<f:section name="iconButtons">
+
+</f:section>
+
+<f:section name="headline">
+	<h1>Export</h1>
+</f:section>
+
+<f:section name="content">
+
+
+
+###EXPORT_FIELDS_SELECTOR###
+<h3>###LLL:select_export_fields###</h3><br />
+###SELECTION###
+<form id="formhandler_module_form" action="###URL###" method="post">
+	<input type="hidden" name="formhandler[csvFormat]" value="###CSV_FORMAT###" />
+	<input type="hidden" name="formhandler[renderMethod]" value="###RENDER_METHOD###" />
+	<input type="hidden" name="id" value="###UID###" />
+	###SELECTED_RECORDS###
+	<table>
+	###EXPORTFIELDS###
+	</table>
+
+	<input type="submit" value="###LLL:export###" /></form>
+	<br /><hr />
+	<a href="###BACK_URL###">###LLL:back###</a>
+###EXPORT_FIELDS_SELECTOR###
+
+###FORMATS_SELECTOR###
+<h3>###LLL:formats_found###</h3><br />
+<table>
+	<tr>
+		<td>
+
+			###FORMATS###
+
+		</td>
+	</tr>
+</table>
+<br /><hr /><a href="###BACK_URL###">###LLL:back###</a>
+###FORMATS_SELECTOR###
+
+###SINGLE_FORMAT###
+<tr><td>
+<form action="###URL###" method="post">
+###HIDDEN_FIELDS###
+<input type="hidden" name="formhandler[csvFormat]" value="###KEY###" />
+<input type="hidden" name="formhandler[renderMethod]" value="csv" />
+<input type="hidden" name="id" value="###UID###" />
+<input type="submit" value="###LLL:export###" />
+</form>
+</td>
+<td>###FORMAT###</td>
+</tr>
+###SINGLE_FORMAT###
+
+
+
+
+###EXPORT_FIELDS###
+<div class="export_fields">
+	Export selected as:
+	<input type="hidden" name="id" value="###UID###" />
+	<input type="submit" value="PDF" name="formhandler[renderMethod]" />
+	<input type="submit" value="CSV" name="formhandler[renderMethod]" />
+</div>
+###EXPORT_FIELDS###
+
+
+
+
+
+</f:section>

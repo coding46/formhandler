@@ -123,7 +123,6 @@ class Backend extends \Tx\Formhandler\Controller\AbstractController {
 	protected function init() {
 		$GLOBALS['LANG']->includeLLFile('EXT:formhandler/Resources/Language/locallang.xml');
 		$this->logTable = '\Tx\Formhandler\log';
-		$this->pageBrowser = new \Tx\Formhandler\Controller\Module\Pagination($this->countRecords(), $this);
 	}
 
 	/**
@@ -174,8 +173,6 @@ class Backend extends \Tx\Formhandler\Controller\AbstractController {
 
 				//show index table
 			} else {
-
-				$this->pageBrowser = new \Tx\Formhandler\mod1_pagination($this->countRecords(), $this);
 
 				//select all records
 				$records = $this->fetchRecords();
@@ -677,66 +674,6 @@ class Backend extends \Tx\Formhandler\Controller\AbstractController {
 		return $this->utilityFuncs->substituteMarkerArray($selectorCode, $markers);
 	}
 
-	/**
-	 * This function returns a single view of a record
-	 *
-	 * @param int $singleUid The UID of the record to show
-	 * @return string single view
-	 */
-	protected function showSingleView($singleUid) {
-
-		//select the record
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid,pid,crdate,ip,params', $this->logTable, ('uid=' . $singleUid));
-
-		//if UID was valid
-		if ($res && $GLOBALS['TYPO3_DB']->sql_num_rows($res) > 0) {
-			$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
-			$GLOBALS['TYPO3_DB']->sql_free_result($res);
-			$viewCode = $this->utilityFuncs->getSubpart($this->templateCode, '###DETAIL_VIEW###');
-
-			//unserialize params
-			$params = unserialize($row['params']);
-
-			$markers = array();
-
-			//start with default fields (IP address, submission date, PID)
-			$markers['###PID###'] = $row['pid'];
-			$markers['###CRDATE###'] = date('Y/m/d H:i', $row['crdate']);
-			$markers['###IP###'] = $row['ip'];
-
-			$markers['###LLL:page_id###'] = $GLOBALS['LANG']->getLL('page_id');
-			$markers['###LLL:crdate###'] = $GLOBALS['LANG']->getLL('crdate');
-			$markers['###LLL:ip_address###'] = $GLOBALS['LANG']->getLL('ip_address');
-
-			//add the submitted params
-			if (isset($params) && is_array($params)) {
-				$paramsTable .= '<table>';
-				foreach ($params as $key=>$value) {
-					if (is_array($value)) {
-						$value = implode(',', $value);
-					}
-					$paramsTable .= '
-						<tr>
-							<td style="font-weight:bold">' . $key . '</td>
-							<td>' . $value . '</td>
-						</tr>
-					';
-				}
-				$paramsTable .= '</table>';
-			}
-			$markers['###LLL:params###'] = $GLOBALS['LANG']->getLL('params');
-			$markers['###PARAMS###'] = $paramsTable;
-
-			$markers['###UID###'] = $this->id;
-			$markers['###LLL:export_as###'] = $GLOBALS['LANG']->getLL('export_as');
-			$markers['###EXPORT_LINKS###'] = '<a href="' . $_SERVER['PHP_SELF'] . '?formhandler[detailId]=' . $row['uid'] . '&formhandler[renderMethod]=pdf">' . $GLOBALS['LANG']->getLL('pdf') . '</a>
-						/<a href="' . $_SERVER['PHP_SELF'] . '?formhandler[detailId]=' . $row['uid'] . '&formhandler[renderMethod]=csv">' . $GLOBALS['LANG']->getLL('csv') . '</a>';
-			$markers['###BACK_LINK###'] = '<a href="' . $_SERVER['PHP_SELF'] . '?' . $this->getDefaultGetParamsString() . '">' . $GLOBALS['LANG']->getLL('back') . '</a>';
-			$content = $this->utilityFuncs->substituteMarkerArray($viewCode, $markers);
-			$content = $this->addCSS($content);
-			return $content;
-		}
-	}
 
 	/**
 	 * This function returns an error message if the log table was not found
@@ -781,82 +718,7 @@ class Backend extends \Tx\Formhandler\Controller\AbstractController {
 		return $row['rowCount'];
 	}
 
-	/**
-	 * This function applies the filter settings and builds an according WHERE clause for the SELECT statement
-	 *
-	 * @return string WHERE clause for the SELECT statement
-	 */
-	protected function buildWhereClause() {
 
-		//init gp params
-		$params = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('formhandler');
-		$where = array();
-
-		if ($this->id) {
-			$tsconfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getModTSconfig($this->id, '\Tx\Formhandler\mod1');
-			$isAllowedToShowAll = (intval($tsconfig['properties']['config.']['enableShowAllButton']) === 1);
-		}
-
-		$pidFilter = '';
-		if (strlen(trim($params['pidFilter'])) > 0) {
-			$pidFilter = $params['pidFilter'];
-		}
-
-		if (strlen(trim($params['pidFilter'])) > 0 && trim($params['pidFilter']) != "*") {
-			$pids = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $params['pidFilter'], 1);
-			$pid_search = array();
-			// check is page shall be accessed by current BE user
-			foreach ($pids as $pid) {
-				if (\TYPO3\CMS\Backend\Utility\BackendUtility::readPageAccess(intval($pid), $GLOBALS['BE_USER']->getPagePermsClause(1))) {
-					$pid_search[] = intval($pid);
-				}
-			}
-
-			// check if there's a valid pid left
-			$this->pidFilter = (empty($pid_search)) ? 0 : implode(",", $pid_search);
-			$where[] = 'pid IN (' . $this->pidFilter . ')';
-
-		// show all entries (admin only)
-		} else if (trim($params['pidFilter']) == "*" && ($GLOBALS['BE_USER']->user['admin'] || $isAllowedToShowAll)) {
-			$this->pidFilter = "*";
-
-		// show clicked page (is always accessable)
-		} else {		
-			$where[] = 'pid = ' . $this->id;
-			$this->pidFilter = $this->id;
-		}
-
-		if (strlen($params['search']) > 0) {
-			$search = $GLOBALS['TYPO3_DB']->escapeStrForLike($params['search'], $this->logTable);
-			$where[] = 'params LIKE \'%' . $search . '%\'';
-		}
-
-		if (trim($params['ipFilter']) > 0) {
-			$ips = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $params['ipFilter'], 1);
-			$ip_search = array();
-			foreach ($ips as $value) {
-				$ip_search[] = $GLOBALS['TYPO3_DB']->fullQuoteStr(htmlspecialchars($value), $this->logTable);
-			}
-			$where[] = 'ip IN (' . implode(",", $ip_search) . ')';
- 		}
-
-		//only records submitted after given timestamp
-		if (strlen(trim($params['startdateFilter'])) > 0) {
-			$tstamp = $this->utilityFuncs->dateToTimestampForBackendModule($params['startdateFilter']);
-			$where[] = 'crdate >= ' . $tstamp;
-		}
-
-		//only records submitted before given timestamp
-		if (strlen(trim($params['enddateFilter'])) > 0) {
-			$tstamp = $this->utilityFuncs->dateToTimestampForBackendModule($params['enddateFilter'], TRUE);
-			$where[] = 'crdate <= ' . $tstamp;
-		}
-
-		//if filter was applied, return the WHERE clause
-		if (count($where) > 0) {
-			return implode(' AND ', $where);
-		}
-	}
 
 	/**
 	 * This function returns the filter fields on top.
@@ -976,97 +838,7 @@ class Backend extends \Tx\Formhandler\Controller\AbstractController {
 		return $this->utilityFuncs->substituteMarkerArray($code, $markers);
 	}
 
-	/**
-	 * This function returns the index table.
-	 *
-	 * @param array &$records The records to show in table
-	 * @return string HTML
-	 */
-	protected function getTable(&$records) {
 
-		//get filter
-		$table = $this->getFilterSection();
-
-		if (count($records) === 0) {
-			return $table . '<div>' . $GLOBALS['LANG']->getLL('no_records') . '</div>';
-		}
-
-		//init gp params
-		$params = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('formhandler');
-
-		$table .= $this->getFunctionArea();
-		$tableCode = $this->utilityFuncs->getSubpart($this->templateCode, '###LIST_TABLE###');
-
-		$tableMarkers = array();
-		$tableMarkers['###LLL:PAGE_ID###'] = $GLOBALS['LANG']->getLL('page_id');
-		$tableMarkers['###LLL:SUBMISSION_DATE###'] = $GLOBALS['LANG']->getLL('submission_date');
-		$tableMarkers['###LLL:IP###'] = $GLOBALS['LANG']->getLL('ip_address');
-		$tableMarkers['###LLL:DETAIL_VIEW###'] = '';
-		$tableMarkers['###LLL:EXPORT###'] = $GLOBALS['LANG']->getLL('export');
-
-		$count = 1;
-		$tableMarkers['###ROWS###'] = '';
-
-		//add records
-		foreach ($records as $record) {
-			if ($count % 2 == 0) {
-				$style = 'class="bgColor3-20"';
-			} else {
-				$style = 'class="bgColor3-40"';
-			}
-			if ($record['is_spam'] == 1) {
-				$style = 'style="background-color:#dd7777"';
-			}
-			$rowCode = $this->utilityFuncs->getSubpart($this->templateCode, '###LIST_TABLE_ROW###');
-			$markers = array();
-			$markers['###UID###'] = $this->id;
-			$markers['###ROW_STYLE###'] = $style;
-			$markers['###PID###'] = $record['pid'];
-			$markers['###SUBMISSION_DATE###'] = date('Y/m/d H:i', $record['crdate']);
-			$markers['###IP###'] = $record['ip'];
-			$markers['###DETAIL_LINK###'] = '<a href="' . $_SERVER['PHP_SELF'] . '?id=' . $this->id . '&formhandler[detailId]=' . $record['uid'] . $this->getDefaultGetParamsString() . '"><img ' . \TYPO3\CMS\Backend\Utility\IconUtility::skinImg('../../../../../../typo3/', 'gfx/zoom.gif') . '/></a>';
-			$markers['###EXPORT_LINKS###'] = '<a href="' . $_SERVER['PHP_SELF'] . '?id=' . $this->id . '&formhandler[detailId]=' . $record['uid'] . $this->getDefaultGetParamsString() . '&formhandler[renderMethod]=pdf">PDF</a>
-						/<a href="' . $_SERVER['PHP_SELF'] . '?id=' . $this->id . '&formhandler[detailId]=' . $record['uid'] . $this->getDefaultGetParamsString() . '&formhandler[renderMethod]=csv">CSV</a>';
-			$checkbox = '<input type="checkbox" name="formhandler[markedUids][]" value="' . $record['uid'] . '" ';
-			if (isset($params['markedUids']) && is_array($params['markedUids']) && in_array($record['uid'], $params['markedUids'])) {
-				$checkbox .= 'checked="checked"';
-			}
-			$checkbox .= '/>';
-			$markers['###CHECKBOX###'] = $checkbox;
-			$count++;
-			$tableMarkers['###ROWS###'] .= $this->utilityFuncs->substituteMarkerArray($rowCode, $markers);
-		}
-
-		// add pagination
-		$tableMarkers['###LLL:ENTRIES###'] = $GLOBALS['LANG']->getLL('pagination_show_entries');
-		$tableMarkers['###WHICH_PAGEBROWSER###'] = $this->pageBrowser->displayBrowseBox();
-
-		//add Export as option
-		$table .= $this->utilityFuncs->substituteMarkerArray($tableCode, $tableMarkers);
-		$table .= $this->utilityFuncs->getSubpart($this->templateCode, '###EXPORT_FIELDS###');
-
-		$markers = array();
-		$markers['###UID###'] = $this->id;
-		$table = $this->utilityFuncs->substituteMarkerArray($table, $markers);
-		$table = $this->addCSS($table);
-		return $this->utilityFuncs->removeUnfilledMarkers($table);
-	}
-
-	/**
-	 * Adds HTML code to include the CSS file to given HTML content.
-	 *
-	 * @param string The HTML content
-	 * @return string The changed HML content
-	 */
-	protected function addCSS($content) {
-		$cssLink = '
-			<link 	rel="stylesheet" 
-					type="text/css" 
-					href="../../../Resources/CSS/backend/styles.css" 
-			/>
-		';
-		return $cssLink . $content;
-	}
 
 	/**
 	 * Get the default GET parameters used in the Formhandler backend module

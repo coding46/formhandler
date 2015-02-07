@@ -1,0 +1,46 @@
+<f:form action="" name="filter_form" method="post" class="form-inline form-inline-spaced">
+	<input type="hidden" name="id" value="{id}" />
+
+	<h2><f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:filter" /></h2>
+
+	<div class="form-group">
+		<label><f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:pid_label" /></label>
+		<input type="text" id="pidFilter" name="formhandler[pidFilter]" value="###UID###"/>
+			###PID_FILTER_ALL###
+	</div>
+	<div class="form-group">
+		<label><f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:search" /></label>
+		<input type="text" name="formhandler[search]" value="###SEARCH###"/>
+	</div>
+	<div class="form-group">
+		<label><f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:address" /></label>
+		<input type="text" name="formhandler[ipFilter]" value="###IP###"/>
+	</div>
+	<div class="form-group">
+		<label><f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:startdate" /></label>
+		<input type="text" id="tceforms-datefield-startdate" value="###value_startdate###" name="formhandler[startdateFilter]" />
+		###cal-icon-startdate###
+	</div>
+	<div class="form-group">
+		<label><f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:enddate" /></label>
+		<input type="text" id="tceforms-datefield-enddate" value="###value_enddate###" name="formhandler[enddateFilter]" />
+		###cal-icon-enddate###
+	</div>
+	<div class="form-group">
+		<label><f:translate key="LLL:EXT:formhandler/Resources/Language/locallang.xml:pagination_how_much" /></label>
+		<select id="howMuch" name="formhandler[howmuch]" size="1">
+			<option value="10" ###selected_howmuch_10###>10 ###LLL:pagination_entries###</option>
+			<option value="20" ###selected_howmuch_20###>20 ###LLL:pagination_entries###</option>
+			<option value="50" ###selected_howmuch_50###>50 ###LLL:pagination_entries###</option>
+			<option value="100" ###selected_howmuch_100###>100 ###LLL:pagination_entries###</option>
+			<option value="500" ###selected_howmuch_500###>500 ###LLL:pagination_entries###</option>
+			<option value="1000" ###selected_howmuch_1000###>1000 ###LLL:pagination_entries###</option>
+			<option value="2500" ###selected_howmuch_2500###>2500 ###LLL:pagination_entries###</option>
+			<option value="5000" ###selected_howmuch_5000###>5000 ###LLL:pagination_entries###</option>
+			<option value="1000000" ###selected_howmuch_1000000###>###LLL:pagination_all_entries###</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<f:form.submit value="{f:translate(key: 'LLL:EXT:formhandler/Resources/Language/locallang.xml:filter')}" class="btn btn-default btn-sm" />
+	</div>
+</f:form>

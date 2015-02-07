@@ -1,0 +1,11 @@
+module.tx_formhandler {
+	persistence.classes {
+		Tx\Formhandler\Domain\Model\Log {
+			mapping {
+				tableName = tx_formhandler_log
+				columns {
+				}
+			}
+		}
+	}
+}
