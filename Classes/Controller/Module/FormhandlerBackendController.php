@@ -37,7 +37,7 @@ namespace Tx\Formhandler\Controller\Module;
 #unset($MCONF);
 #require_once('conf.php');
 
-#$GLOBALS['LANG']->includeLLFile('EXT:formhandler/Resources/Language/locallang.xml');
+
 
 /**
  * Module 'Formhandler' for the 'formhandler' extension.
@@ -51,12 +51,26 @@ class FormhandlerBackendController extends \TYPO3\CMS\Backend\Module\BaseScriptC
 	var $pageinfo;
 
 	/**
+	 * The name of the module
+	 *
+	 * @var string
+	 */
+	protected $moduleName = 'web_txformhandlermoduleM1';
+
+	/**
 	 * Array holding the TypoScript set in userTS or pageTS.
 	 *
 	 * @access private
 	 * @var array
 	 */
 	private $settings;
+
+	function __construct() {
+		$this->getLanguageService()->includeLLFile('EXT:formhandler/Resources/Language/locallang.xml');
+		$this->MCONF = array(
+			'name' => $this->moduleName
+		);
+	}
 
 	/**
 	 * Initializes the Module
