@@ -59,7 +59,7 @@
 				<TCEforms>
 					<config>
 					    <type>user</type>
-						<userFunc>tx_dynaflex_formhandler->addFields_predefinedJS</userFunc>
+						<userFunc>Tx\Formhandler\UserFunction\DynaFlex->addFields_predefinedJS</userFunc>
 					</config>
 				</TCEforms>
 			</predefinedJS>

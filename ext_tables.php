@@ -11,9 +11,6 @@ if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
 if (TYPO3_MODE === 'BE') {
 
-	// dynamic flexform
-	include_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . '/Resources/PHP/class.tx_dynaflex.php');
-
 	$TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY . '_pi1'] = 'layout,select_key,pages';
 
 	// Add flexform field to plugin options
