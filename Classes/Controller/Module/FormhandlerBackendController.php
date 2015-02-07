@@ -116,7 +116,7 @@ class FormhandlerBackendController extends \TYPO3\CMS\Backend\Module\BaseScriptC
 		if (($this->id && $access) || ($GLOBALS['BE_USER']->user['admin'] && !$this->id)) {
 
 			// Draw the header.
-			$this->doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('mediumDoc');
+			$this->doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Template\DocumentTemplate::class);
 			$this->doc->backPath = $GLOBALS['BACK_PATH'];
 
 			/** @var $pageRenderer \TYPO3\CMS\Core\Page\PageRenderer */
