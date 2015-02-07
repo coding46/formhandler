@@ -53,11 +53,11 @@ class TcPdf {
 	}
 
 	/**
-	 * Function to generate a PDF file from submitted form values. This function is called by \Tx\Formhandler\Controller_Backend
+	 * Function to generate a PDF file from submitted form values. This function is called by \Tx\Formhandler\Controller\Module\Backend
 	 *
 	 * @param array $records The records to export to PDF
 	 * @param array $exportFields A list of fields to export. If not set all fields are exported
-	 * @see \Tx\Formhandler\Controller_Backend::generatePDF()
+	 * @see \Tx\Formhandler\Controller\Module\Backend::generatePDF()
 	 * @return void
 	 */
 	function generateModulePDF($records, $exportFields = array(), $fileName = 'formhandler.pdf') {

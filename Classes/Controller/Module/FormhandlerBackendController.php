@@ -32,13 +32,6 @@ namespace Tx\Formhandler\Controller\Module;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-
-// DEFAULT initialization of a module [BEGIN]
-#unset($MCONF);
-#require_once('conf.php');
-
-
-
 /**
  * Module 'Formhandler' for the 'formhandler' extension.
  *

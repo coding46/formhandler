@@ -53,11 +53,11 @@ class Csv {
 	}
 
 	/**
-	 * Function to generate a CSV file from submitted form values. This function is called by \Tx\Formhandler\Controller_Backend
+	 * Function to generate a CSV file from submitted form values. This function is called by \Tx\Formhandler\Controller\Module\Backend
 	 *
 	 * @param array $records The records to export to CSV
 	 * @param array $exportParams A list of fields to export. If not set all fields are exported
-	 * @see \Tx\Formhandler\Controller_Backend::generateCSV()
+	 * @see \Tx\Formhandler\Controller\Module\Backend::generateCSV()
 	 * @return void
 	 */
 	public function generateModuleCSV($records, $exportParams = array(), $delimiter = ',', $enclosure = '"', $encoding = 'utf-8', $fileName = 'formhandler.csv') {
