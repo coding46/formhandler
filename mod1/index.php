@@ -32,10 +32,5 @@
 
 $SOBE = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\Tx\Formhandler\Controller\Module\FormhandlerBackendController::class);
 $SOBE->init();
-
-foreach ($SOBE->include_once as $INC_FILE) {
-	include_once($INC_FILE);
-}
-
 $SOBE->main();
 $SOBE->printContent();
