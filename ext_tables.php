@@ -35,7 +35,7 @@ if (TYPO3_MODE === 'BE') {
 			'name' => 'web_txformhandlermoduleM1',
 			'labels' => array(
 				'tabs_images' => array(
-					'tab' => '../Resources/Public/Icons/moduleicon.gif',
+					'tab' => '../Resources/Public/Icons/module-icon.png',
 				),
 				'll_ref' => 'LLL:EXT:formhandler/Resources/Language/locallang_mod.xml',
 			),
