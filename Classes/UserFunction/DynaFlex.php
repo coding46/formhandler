@@ -1,4 +1,5 @@
 <?php
+namespace Tx\Formhandler\UserFunction;
 /*                                                                        *
  * This script is part of the TYPO3 project - inspiring people to share!  *
  *                                                                        *
@@ -20,7 +21,7 @@
  * @package	Tx_Formhandler
  * @subpackage	Resources
  */
-class tx_dynaflex_formhandler {
+class DynaFlex {
 
 	/**
 	 * Adds onchange listener on the drop down menu "predefined".
